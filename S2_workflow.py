@@ -1,7 +1,7 @@
 from prefect import Flow, Parameter, flatten
 from prefect.executors import LocalDaskExecutor
 from prefect.run_configs import DockerRun
-from prefect.storage import GitLab
+from prefect.storage import GitHub
 
 from nuts import common, dhus, s2
 
@@ -18,9 +18,8 @@ flow.run_config = DockerRun(
    image="aliaspace/nuts:1.1"
 )
 flow.executor = LocalDaskExecutor()
-# flow.storage = Github(
-#     host="http://gitlab.alia-space.com",
-#     repo="GDS/nuts",                           # name of repo
-#     path="S2_workflow.py",                   # location of flow file in repo
-#     access_token_secret="GITLAB_ACCESS_TOKEN",  # name of personal access token secret
-#     )
+flow.storage = GitHub(
+    repo="https://github.com/TheRed86/nuts",                           # name of repo
+    path="S2_workflow.py",                   # location of flow file in repo
+    access_token_secret="GITHUB_ACCESS_TOKEN",  # name of personal access token secret
+    )

@@ -18,8 +18,10 @@ flow.run_config = DockerRun(
    image="aliaspace/nuts:1.1"
 )
 flow.executor = LocalDaskExecutor()
+
 flow.storage = GitHub(
-    repo="https://github.com/TheRed86/nuts",                           # name of repo
+    repo="TheRed86/nuts",                           # name of repo
     path="S2_workflow.py",                   # location of flow file in repo
-    access_token_secret="GITHUB_ACCESS_TOKEN",  # name of personal access token secret
+    # access_token_secret="GITHUB_ACCESS_TOKEN",  # name of personal access token secret
     )
+flow.register(project_name="NUTS")
